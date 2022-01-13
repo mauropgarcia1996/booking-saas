@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "commit": "cz commit"
+    "commit": "cz"
   },
   "dependencies": {
     "@mantine/core": "^3.5.5",
