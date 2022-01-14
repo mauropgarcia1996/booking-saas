@@ -13,6 +13,7 @@
     "@mantine/dates": "^3.5.5",
     "@mantine/hooks": "^3.5.5",
     "@mantine/modals": "^3.5.5",
+    "@mantine/next": "^3.5.5",
     "@mantine/notifications": "^3.5.5",
     "@supabase/supabase-js": "^1.29.1",
     "dayjs": "^1.10.7",
