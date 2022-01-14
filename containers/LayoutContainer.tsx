@@ -7,10 +7,10 @@ import {
   Text,
   useMantineTheme,
 } from "@mantine/core";
-import { useState } from "react";
+import React, { useState } from "react";
 import MainNavbar from "../components/Navbar/MainNavbar";
 
-const LayoutContainer = ({ children }) => {
+const LayoutContainer = ({ children }: LayoutContainer) => {
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
   return (
@@ -51,5 +51,9 @@ const LayoutContainer = ({ children }) => {
     </AppShell>
   );
 };
+
+interface LayoutContainer {
+  children: React.ReactNode
+}
 
 export default LayoutContainer;
