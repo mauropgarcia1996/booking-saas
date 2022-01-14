@@ -68,4 +68,8 @@ const Guests: NextPage = () => {
   );
 };
 
+interface Column {
+  label: string
+}
+
 export default Guests;
