@@ -13,7 +13,7 @@ const SimpleTable = ({ columns, loading, children }: any) => {
       <Table highlightOnHover>
         <thead>
           <tr>
-            {columns.map((e, i) => (
+            {columns.map((e: Column, i: number) => (
               <th key={i}>{e.label}</th>
             ))}
           </tr>
@@ -31,5 +31,9 @@ const SimpleTable = ({ columns, loading, children }: any) => {
     </Card>
   );
 };
+
+interface Column {
+  label: string
+}
 
 export default SimpleTable;
