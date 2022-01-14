@@ -1,4 +1,5 @@
 import { Text } from "@mantine/core";
+import { formatDate } from "../../utils/date";
 
 const TableRow = ({ booking }: any) => {
   return (
@@ -7,12 +8,12 @@ const TableRow = ({ booking }: any) => {
         {booking.guest_id.given_name} {booking.guest_id.family_name}
       </td>
       <td>
-        {booking.rooms.map((e, i) => (
+        {booking.rooms.map((e: string, i: number) => (
           <Text key={i}>Num. {e}</Text>
         ))}
       </td>
-      <td>{booking.from}</td>
-      <td>{booking.to}</td>
+      <td>{formatDate(booking.from)}</td>
+      <td>{formatDate(booking.to)}</td>
     </tr>
   );
 };

@@ -1,11 +1,12 @@
 import Head from "next/head";
+import React from "react";
 
 /**
  * Renders the page layout
  * @param children elements of the page
  * @returns PageContainer Component
  */
-const PageContainer = ({ children }: any) => {
+const PageContainer = ({ children }: Page) => {
   return (
     <div style={{height: "100%"}}>
       <Head>
@@ -17,5 +18,9 @@ const PageContainer = ({ children }: any) => {
     </div>
   );
 };
+
+interface Page {
+  children: React.ReactNode
+}
 
 export default PageContainer;

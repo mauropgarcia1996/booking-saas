@@ -1,35 +1,34 @@
-import {
-  Accordion,
-  Grid,
-  Group,
-  MultiSelect,
-  Paper,
-  TextInput,
-} from "@mantine/core";
+import { Accordion, Grid, MultiSelect, Paper, TextInput } from "@mantine/core";
 import { useState } from "react";
 
 const FILTERS_INIT = {
   name: "",
   room: [],
 };
+const HABITACIONES = [
+  { value: "1", label: "Habitacion 1" },
+  { value: "2", label: "Habitacion 2" },
+  { value: "3", label: "Habitacion 3" },
+];
 
-const TableFilters = ({ sendFilters, loading }: any) => {
-  const [filters, setFilters] = useState(
+/**
+ * Renders the Table Filters
+ * @param sendFilters method for filter handling
+ * @param loading boolean for loading state
+ * @returns TableFilters Component
+ */
+const TableFilters = ({ sendFilters, loading }: TableFilter) => {
+  const [filters, setFilters] = useState<Filters>(
     JSON.parse(JSON.stringify(FILTERS_INIT))
   );
-  const HABITACIONES = [
-    { value: "1", label: "Habitacion 1" },
-    { value: "2", label: "Habitacion 2" },
-    { value: "3", label: "Habitacion 3" },
-  ];
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { name: string | number; value: any; }; }) => {
     const state = JSON.parse(JSON.stringify(filters));
     state[e.target.name] = e.target.value;
     setFilters(state);
   };
 
-  const handleSelectChange = (e) => {
+  const handleSelectChange = (e: any) => {
     const state = JSON.parse(JSON.stringify(filters));
     state["room"] = e;
     setFilters(state);
@@ -67,5 +66,15 @@ const TableFilters = ({ sendFilters, loading }: any) => {
     </Paper>
   );
 };
+
+interface TableFilter {
+  sendFilters: (filters: Filters) => void;
+  loading: boolean;
+}
+
+interface Filters {
+  name: string;
+  room: string[];
+}
 
 export default TableFilters;
