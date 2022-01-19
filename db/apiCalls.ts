@@ -17,3 +17,11 @@ export const getAllBookings = async (filters: any) => {
     }
     return query
 }
+
+/**
+ * Method to get all rooms
+ * @returns supabase query
+ */
+export const getAllRooms = async () => {
+    return supabase.from("rooms").select("*")
+}
