@@ -1,6 +1,7 @@
-import { Box, Group, Text, Title } from "@mantine/core";
+import { Box, Button, Group, Modal, Text, Title } from "@mantine/core";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
+import BookingForm from "../../components/Bookings/BookingForm";
 import TableFilters from "../../components/Bookings/TableFilters";
 import TableRow from "../../components/Bookings/TableRow";
 import SimpleTable from "../../components/SimpleTable";
@@ -17,6 +18,7 @@ const COLUMNS = [
 const Guests: NextPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [bookings, setBookings] = useState<object[] | null>(null);
+  const [formOpened, setFormOpened] = useState<boolean>(false);
 
   useEffect(() => {
     getBookings(null);
@@ -44,6 +46,7 @@ const Guests: NextPage = () => {
    * @param filters object containing filters applied
    */
   const sendFilters = (filters: any) => {
+    setFormOpened(false)
     getBookings(filters);
   };
   return (
@@ -57,6 +60,9 @@ const Guests: NextPage = () => {
             paddingInline: theme.spacing.lg,
           })}
         >
+          <Group position="right">
+            <Button onClick={() => setFormOpened(true)}>Add Booking</Button>
+          </Group>
           <TableFilters sendFilters={sendFilters} loading={loading} />
           <SimpleTable columns={COLUMNS} loading={loading}>
             {bookings &&
@@ -64,12 +70,21 @@ const Guests: NextPage = () => {
           </SimpleTable>
         </Box>
       </Group>
+      {/* MODALES */}
+      <Modal
+        centered
+        opened={formOpened}
+        onClose={() => setFormOpened(false)}
+        title="New Booking"
+      >
+        <BookingForm handleRefresh={sendFilters} />
+      </Modal>
     </PageContainer>
   );
 };
 
 interface Column {
-  label: string
+  label: string;
 }
 
 export default Guests;
