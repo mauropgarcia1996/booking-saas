@@ -12,7 +12,7 @@ export const getAllBookings = async (filters: any) => {
     if (filters?.name) {
         query.ilike('guests.given_name', `%${filters.name}%`)
     }
-    if (filters?.room.length > 0) {
+    if (filters?.room?.length > 0) {
         query.contains('rooms', [`${filters.room.toString()}`])
     }
     return query
@@ -24,7 +24,7 @@ export const getAllBookings = async (filters: any) => {
  * @param to Date
  * @returns supabase query
  */
- export const getBookingsByDate = async (from: Date | null | string, to: Date | null | string) => {
+export const getBookingsByDate = async (from: Date | null | string, to: Date | null | string) => {
     return supabase.rpc('all_users', { date_from: from, date_to: to })
 }
 
