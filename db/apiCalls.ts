@@ -19,6 +19,13 @@ export const getAllBookings = async (filters: any) => {
 }
 
 /**
+ * Method to get all rooms
+ * @returns supabase query
+ */
+export const getAllRooms = async () => {
+    return supabase.from("rooms").select("*")
+  
+}
  * Method to get bookings by date range
  * @param from Date
  * @param to Date
