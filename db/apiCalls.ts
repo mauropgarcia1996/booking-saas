@@ -19,6 +19,27 @@ export const getAllBookings = async (filters: any) => {
 }
 
 /**
+ * Method to get bookings by date range
+ * @param from Date
+ * @param to Date
+ * @returns supabase query
+ */
+ export const getBookingsByDate = async (from: Date | null | string, to: Date | null | string) => {
+    return supabase.rpc('all_users', { date_from: from, date_to: to })
+}
+
+/**
+ * Method to add a new booking
+ * @param data Booking object
+ * @returns supabase query
+ */
+export const addBooking = async (data: object) => {
+    return supabase
+        .from("bookings")
+        .insert([{ ...data }]);
+}
+
+/**
  * Method to get all rooms
  * @returns supabase query
  */
